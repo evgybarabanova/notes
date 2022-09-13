@@ -14,4 +14,4 @@
 * Searching notes
 * Updating notes
           
-          ![gif3](https://user-images.githubusercontent.com/86629451/189956091-676089ef-193f-4f7d-b18b-8cea48d9b1ac.gif)
+        (https://user-images.githubusercontent.com/86629451/189956091-676089ef-193f-4f7d-b18b-8cea48d9b1ac.gif)](https://github.com/evgybarabanova/CV/blob/main/public/gif3.gif)

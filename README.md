@@ -13,5 +13,6 @@
 * Deleting notes
 * Searching notes
 * Updating notes
-          
-        ![](https://github.com/evgybarabanova/notes/blob/main/stickers/app-react/public/images/gif3.gif)
+ 
+ ##GIF
+ ![](https://github.com/evgybarabanova/notes/blob/main/stickers/app-react/public/images/gif3.gif)

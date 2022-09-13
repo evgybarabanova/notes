@@ -14,5 +14,4 @@
 * Searching notes
 * Updating notes
           
-        ![](gif3.gif)
-        ![](https://github.com/evgybarabanova/gif3.gif)
+        ![](https://github.com/evgybarabanova/notes/blob/main/stickers/app-react/public/images/gif3.gif)

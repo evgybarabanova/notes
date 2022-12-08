@@ -168,7 +168,7 @@ export default function Home() {
                     </div>
                   ))}
                 </li>
-              </ul>
+              </ul> 
             }
           ></Route>
           <Route path="settings" element={<Settings />}></Route>

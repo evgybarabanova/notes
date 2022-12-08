@@ -17,7 +17,6 @@ export default function Register() {
       registerUser(name, email, password)
         .then(() => navigate("/login"))
         .catch((error) => {
-          debugger;
           alert(error.message);
         });
     } catch (error) {

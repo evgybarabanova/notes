@@ -1,28 +1,41 @@
 <template>
-    <main class="login-page-main">
-      <h1>Login</h1>
-      <form class="login-page-form">
-        <label for="email">Email</label>
-        <input name="email" type="email" placeholder="Enter your email" />
-        <div class="register-page-password"></div>
-        <label for="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Enter your password"
-        />
-        <button class="login-page-button" type="submit">
-          Login
-        </button>
-      </form>
-      <router-link class="link" to="/">back</router-link>
-    </main>
+  <main class="login-page-main">
+    <h1>Login</h1>
+    <LoginForm @login="authenticateUser"/>
+    <router-link class="link" to="/">back</router-link>
+  </main>
 </template>
 
 <script>
-    export default {
-        
+import LoginForm from '@/components/LoginForm.vue';
+import { authenticateUser } from '@/logic';
+export default {
+  components: {
+    LoginForm
+  },
+  data() {
+    return {
     }
+  },
+  methods: {
+    authenticateUser(user) {
+      try {
+        const { email, password } = user
+
+        authenticateUser(email, password)
+          .then((token) => {
+            sessionStorage.token = token;
+
+            this.$router.push({ path: '/home' });
+          })
+          .catch((error) => alert(error.message));
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+  }
+}
+
 </script>
 
 <style scoped>
@@ -41,25 +54,6 @@
   height: 100%;
   color: #fff;
   left: 0%;
-}
-
-.login-page-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-input {
-  margin-left: 1rem;
-  background-color: #fff;
-}
-
-.login-page-button {
-  border: none;
-  background-color: transparent;
-  color: #fff;
-  font-size: large;
 }
 
 .link {

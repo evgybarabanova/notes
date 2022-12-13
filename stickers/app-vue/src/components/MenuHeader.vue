@@ -1,7 +1,6 @@
 <template>
      <header className="home-page-header">
         <h1 className="home-page-header__title">Hello!</h1>
-
         <button
           className="home-page-header__menu-button"
         >

@@ -1,8 +1,9 @@
 <template>
     <div>
-        <form className="home-page-main-form">
+        <form className="home-page-main-form" @submit.prevent>
           <div className="home-page-main__search">
             <input
+              v-model="note.search"
               type="search"
               name="query"
               placeholder="search notes"
@@ -11,6 +12,7 @@
             <button
               className="home-page-header__search-button"
               type="submit"
+              @click="searchNotes"
             >
               Search
             </button>
@@ -21,7 +23,13 @@
 
 <script>
     export default {
-        
+        data(){
+          return {
+            note: {
+              
+            }
+          }
+        }
     }
 </script>
 

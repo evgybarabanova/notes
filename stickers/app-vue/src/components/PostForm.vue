@@ -1,36 +1,47 @@
 <template>
-  <div>
-    <button class="home-page-footer__add-button" @click="createNote">
-      +
-    </button>
-    <!-- <button  @click="retrieveNotes">
-      set post
-    </button> -->
-  </div>
+    <form @submit.prevent>
+        <ul className="list">
+            <li className="list__item" v-for="note in notes">
+                <div className="sticker">
+                       <p>
+                           {{ note.text }}
+                       </p>
+                </div>
+            </li>
+        </ul>
+    </form>
+     <button className="home-page-footer__add-button" @click="createNote">
+        +
+    </button> 
 </template>
 
 <script>
-import retrieveNotes from '@/logic';
-import createNote from '@/logic';
-import axios from 'axios';
-export default {
-  methods: {
-  }
-}
 
+export default {
+    data() {
+        return {
+            notes: {
+                text: ""
+            }
+        }
+    },
+    methods: {
+        createNote() {
+            this.$emit('create', this.note)
+            this.note = {
+                text: ""
+            }
+        },
+        retrieveNotes() {
+            this.$emit('retrieve', this.note)
+            this.note = {   
+                text: ""
+            }
+        }
+    }
+}
 </script>
 
 <style scoped>
-.home-page-footer__add-button {
-  border: none;
-  background-color: transparent;
-  color: #fff;
-  font-size: x-large;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 5rem;
-}
+
 </style>

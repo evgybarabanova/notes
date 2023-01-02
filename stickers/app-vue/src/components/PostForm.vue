@@ -1,18 +1,15 @@
 <template>
     <form @submit.prevent>
-        <ul className="list">
-            <li className="list__item" v-for="note in notes">
-                <div className="sticker">
-                       <p>
-                           {{ note.text }}
-                       </p>
-                </div>
-            </li>
-        </ul>
+
+        <div class="sticker">
+            <p type="text"
+             contenteditable="true"
+             v-on:keyup.up="updateNote" 
+             class="sticker__text">
+            </p>
+        </div>
     </form>
-     <button className="home-page-footer__add-button" @click="createNote">
-        +
-    </button> 
+
 </template>
 
 <script>
@@ -20,26 +17,21 @@
 export default {
     data() {
         return {
-            notes: {
-                text: ""
+            note: {
+                text: '',
             }
         }
     },
     methods: {
-        createNote() {
-            this.$emit('create', this.note)
+        updateNote() {
+            this.$emit('update', this.note)
             this.note = {
-                text: ""
-            }
-        },
-        retrieveNotes() {
-            this.$emit('retrieve', this.note)
-            this.note = {   
                 text: ""
             }
         }
     }
 }
+
 </script>
 
 <style scoped>

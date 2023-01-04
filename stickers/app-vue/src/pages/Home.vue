@@ -3,7 +3,7 @@
         <MenuHeader />
         <SearchForm />
         <PostForm @update="updateNote" />
-        <PostList :notes="notes" />
+        <PostList :notes="notes"/>
         <CreateNote @create="createNote" />
     </div>
 </template>
@@ -26,52 +26,42 @@ export default {
     data() {
         return {
             notes: [],
-            text: "",
         }
     },
+    created() {
+        this.retrieveNotes()
+    },
     methods: {
-        retrieveNotes(note) {
-            try {
-                const { text } = note
-
-                retrieveNotes(text)
-                    .then((token) => {
-                        sessionStorage.token = token;
-                    })
-                    .catch((error) => alert(error.message));
-            } catch (error) {
-                alert(error.message);
-            }
-        },
-        retrieveUser(user) {
-            try {
-                retrieveUser(user)
-                    .then((token) => {
-                        sessionStorage.token = token;
-                    })
-                    .catch((error) => alert(error.message))
-            } catch (error) {
-                alert(error.message);
-            }
-        },
         createNote(text) {
             try {
                 createNote(sessionStorage.token, "")
                     .then(() => retrieveNotes(sessionStorage.token))
-                    // .then((notes) => 
+                    // .then((notes) => notes.text)
                     .catch((error) => alert(error.message));
             } catch (error) {
                 alert(error.message);
             }
         },
+
         updateNote(noteId, text) {
             try {
                 updateNote(sessionStorage.token, noteId, text)
+                    .then(() => retrieveNotes(sessionStorage.token))
                     .catch((error) =>
                         alert(error.message)
                     );
             } catch (error) {
                 alert(error.message);
+            }
+        },
+
+        retrieveNotes() {
+            try {
+                retrieveNotes(sessionStorage.token)
+                    .then(notes => this.notes = notes)
+                    .catch(error => alert(error.message))
+            } catch (error) {
+                alert(error.message)
             }
         }
     }

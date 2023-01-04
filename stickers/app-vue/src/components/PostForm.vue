@@ -18,12 +18,12 @@ export default {
     data() {
         return {
             note: {
-                text: '',
-            }
+                   text: '',
+               }
         }
     },
     methods: {
-        updateNote() {
+        updateNote(noteId, text) {
             this.$emit('update', this.note)
             this.note = {
                 text: ""

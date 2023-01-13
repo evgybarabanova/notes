@@ -1,33 +1,34 @@
 <template>
-
-  <TransitionGroup name="list" tag="ul" class="list">
+  <ul className="list">
     <li class="list__item" v-for="note in notes" :key="note.id">
+      <button className="sticker__delete-button">
+        x
+      </button>
       <p class="sticker__text">
         {{ note.text }}
       </p>
     </li>
-  </TransitionGroup>
-
+  </ul>
 </template>
 
 <script>
 
 export default {
 
-props: {
+  props: {
     notes: {
       type: Array,
       required: true
     }
   },
-  created(){
+  created() {
     console.log(this.notes, 'ffffffff');
   }
 }
 </script>
 
-<style>
-.list {
+<style scoped>
+ul {
   list-style: none;
   padding: 0%;
   display: flex;
@@ -35,7 +36,7 @@ props: {
   align-items: center;
 }
 
-.sticker {
+li {
   background-color: yellow;
   display: flex;
   flex-direction: column;
@@ -45,9 +46,18 @@ props: {
 }
 
 .sticker__text {
-  background-color: transparent;
+  background-color: yellow;
   border: none;
   outline: none;
   margin: 0;
+}
+
+.sticker__delete-button{
+  border: none;
+  display: flex;
+  align-self: flex-end;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer; 
 }
 </style>

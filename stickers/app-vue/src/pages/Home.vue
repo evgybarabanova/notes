@@ -1,11 +1,11 @@
 <template>
     <div>
         <MenuHeader />
-        <SearchForm />
+        <SearchForm @query="searchNotes"/>
         <PostForm @update="updateNote" />
-        <PostList :notes="notes"/>
-        <CreateNote @create="createNote" />
+        <PostList :notes="notes" />
     </div>
+        <CreateNote @create="createNote" />
 </template>
 
 <script>
@@ -17,7 +17,8 @@ import CreateNote from '@/components/CreateNote.vue';
 import { retrieveNotes } from '@/logic';
 import { retrieveUser } from '@/logic';
 import { createNote } from '@/logic';
-import { updateNote } from '@/logic'
+import { updateNote } from '@/logic';
+import { searchNotes } from '@/logic'
 
 export default {
     components: {
@@ -36,7 +37,7 @@ export default {
             try {
                 createNote(sessionStorage.token, "")
                     .then(() => retrieveNotes(sessionStorage.token))
-                    // .then((notes) => notes.text)
+                     .then((notes) => this.notes)
                     .catch((error) => alert(error.message));
             } catch (error) {
                 alert(error.message);
@@ -62,6 +63,16 @@ export default {
                     .catch(error => alert(error.message))
             } catch (error) {
                 alert(error.message)
+            }
+        },
+
+        searchNotes(query){
+            try {
+                searchNotes(sessionStorage.token, query)
+                .then(notes => this.notes = notes)
+                .catch(error => alert(error.message)) 
+            } catch (error) {
+                alert(error.message)   
             }
         }
     }

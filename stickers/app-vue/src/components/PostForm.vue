@@ -1,6 +1,5 @@
 <template>
     <form @submit.prevent>
-
         <div class="sticker">
             <p type="text"
              contenteditable="true"
@@ -35,5 +34,10 @@ export default {
 </script>
 
 <style scoped>
-
+.sticker__text {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin: 0;
+}
 </style>

@@ -3,7 +3,7 @@
         <form className="home-page-main-form" @submit.prevent>
           <div className="home-page-main__search">
             <input
-              v-model="note.search"
+              v-model="note.query"
               type="search"
               name="query"
               placeholder="search notes"
@@ -26,8 +26,13 @@
         data(){
           return {
             note: {
-              
+            query: ""  
             }
+          }
+        }, 
+        methods: {
+          searchNotes() {
+            this.$emit('query', this.query)
           }
         }
     }

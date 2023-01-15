@@ -11,7 +11,6 @@
             />
             <button
               className="home-page-header__search-button"
-              type="submit"
               @click="searchNotes"
             >
               Search

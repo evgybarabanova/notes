@@ -1,7 +1,7 @@
 <template>
   <ul className="list">
     <li class="list__item" v-for="note in notes" :key="note.id">
-      <button className="sticker__delete-button">
+      <button className="sticker__delete-button" @click="deleteNote">
         x
       </button>
       <p class="sticker__text">
@@ -14,15 +14,19 @@
 <script>
 
 export default {
-
   props: {
     notes: {
       type: Array,
       required: true
     }
   },
-  created() {
-    console.log(this.notes, 'ffffffff');
+  methods: {
+    deleteNote() {
+      this.$emit('delete', this.note)
+      this.note = {
+        text: ""
+      }
+    }
   }
 }
 </script>
@@ -52,12 +56,12 @@ li {
   margin: 0;
 }
 
-.sticker__delete-button{
+.sticker__delete-button {
   border: none;
   display: flex;
   align-self: flex-end;
   background-color: transparent;
   padding: 0;
-  cursor: pointer; 
+  cursor: pointer;
 }
 </style>

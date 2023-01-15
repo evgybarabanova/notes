@@ -18,7 +18,8 @@ import { retrieveNotes } from '@/logic';
 import { retrieveUser } from '@/logic';
 import { createNote } from '@/logic';
 import { updateNote } from '@/logic';
-import { searchNotes } from '@/logic'
+import { searchNotes } from '@/logic';
+import { deleteNote} from '@/logic';
 
 export default {
     components: {
@@ -32,17 +33,30 @@ export default {
     created() {
         this.retrieveNotes()
     },
+
     methods: {
         createNote(text) {
             try {
                 createNote(sessionStorage.token, "")
                     .then(() => retrieveNotes(sessionStorage.token))
-                     .then((notes) => this.notes)
+                    .then(() => window.location.reload())
                     .catch((error) => alert(error.message));
             } catch (error) {
                 alert(error.message);
             }
         },
+
+        deleteNote(noteId) {
+    try {
+      deleteNote(sessionStorage.token, noteId, note)
+        .then(() => retrieveNotes(sessionStorage.token))
+        .then(note => this.note.splice(noteId))
+        .then(() => window.location.reload())
+        .catch((error) => alert(error.message));
+    } catch (error) {
+      alert(error.message);
+    }
+  },
 
         updateNote(noteId, text) {
             try {

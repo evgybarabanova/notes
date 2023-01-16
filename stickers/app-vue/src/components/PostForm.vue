@@ -1,10 +1,11 @@
 <template>
     <form @submit.prevent>
         <div class="sticker">
-            <p type="text"
-             contenteditable="true"
-             v-on:keyup.up="updateNote" 
-             class="sticker__text">
+            <p type="text" 
+            contenteditable="true" 
+            v-on:keyup.up="updateNote"
+            class="sticker__text">
+            {{ note.text }}
             </p>
         </div>
     </form>
@@ -17,14 +18,16 @@ export default {
     data() {
         return {
             note: {
-                type: Object,
-                required: true,
-               }
+                text: ""
+            }
         }
     },
     methods: {
         updateNote() {
             this.$emit('update', this.note)
+            this.note = {
+                text: ""
+            }
         }
     }
 }
@@ -33,9 +36,9 @@ export default {
 
 <style scoped>
 .sticker__text {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  margin: 0;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    margin: 0;
 }
 </style>

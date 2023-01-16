@@ -1,11 +1,11 @@
 <template>
     <div>
         <MenuHeader />
-        <SearchForm @query="searchNotes"/>
+        <SearchForm @query="searchNotes" />
         <PostForm @update="updateNote" />
         <PostList :notes="notes" />
     </div>
-        <CreateNote @create="createNote" />
+    <CreateNote @create="createNote" />
 </template>
 
 <script>
@@ -19,11 +19,15 @@ import { retrieveUser } from '@/logic';
 import { createNote } from '@/logic';
 import { updateNote } from '@/logic';
 import { searchNotes } from '@/logic';
-import { deleteNote} from '@/logic';
+import { deleteNote } from '@/logic';
 
 export default {
     components: {
-        MenuHeader, SearchForm, PostForm, PostList, CreateNote
+        MenuHeader,
+        SearchForm,
+        PostForm,
+        PostList,
+        CreateNote
     },
     data() {
         return {
@@ -46,17 +50,17 @@ export default {
             }
         },
 
-        deleteNote(note) {
-    try {
-      deleteNote(sessionStorage.token)
-        .then(() => retrieveNotes(sessionStorage.token))
-        .then(() => this.notes.filter(p => p.id !== note.id))
-        .then(() => window.location.reload())
-        .catch((error) => alert(error.message));
-    } catch (error) {
-      alert(error.message);
-    }
-  },
+        deleteNote() {
+            try {
+                deleteNote(sessionStorage.token, noteId)
+                    .then(() => retrieveNotes(sessionStorage.token))
+                    .then(() => this.notes.filter(p => p.noteId !== note.id))
+                    .then(() => window.location.reload())
+                    .catch((error) => alert(error.message));
+            } catch (error) {
+                alert(error.message);
+            }
+        },
 
         updateNote(noteId, text) {
             try {
@@ -80,13 +84,13 @@ export default {
             }
         },
 
-        searchNotes(query){
+        searchNotes(query) {
             try {
                 searchNotes(sessionStorage.token, query)
-                .then(notes => this.notes = notes)
-                .catch(error => alert(error.message)) 
+                    .then(notes => this.notes = notes)
+                    .catch(error => alert(error.message))
             } catch (error) {
-                alert(error.message)   
+                alert(error.message)
             }
         }
     }

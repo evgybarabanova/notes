@@ -3,32 +3,35 @@
     <li class="list__item" 
     v-for="note in notes"
     :note="note" 
-    :key="note.id">
-      <button className="sticker__delete-button" 
+    :key="note.id"
+    @delete="$emit('delete', note)">
+      <!-- <button className="sticker__delete-button" 
       @click="delete">
         x
-      </button>
-      <p class="sticker__text">
+      </button> -->
+      
+      <!-- <p class="sticker__text">
         {{ note.text }}
-      </p>
+      </p> -->
     </li>
   </ul>
 </template>
 
 <script>
-
+import PostItem from './PostItem.vue';
 export default {
+  components: {PostItem},
   props: {
     notes: { 
       type: Array,
       required: true,
     }
   },
-  methods: {
-    deleteNote() {
-      this.$emit('delete', note)
-      }
-  }
+  // methods: {
+  //   deleteNote() {
+  //     this.$emit('delete', note)
+  //     }
+  // }
 }
 </script>
 
@@ -50,7 +53,7 @@ li {
   margin-bottom: 2rem;
 }
 
-.sticker__text {
+/* .sticker__text {
   background-color: yellow;
   border: none;
   outline: none;
@@ -64,5 +67,5 @@ li {
   background-color: transparent;
   padding: 0;
   cursor: pointer;
-}
+} */
 </style>

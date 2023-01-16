@@ -1,7 +1,11 @@
 <template>
   <ul className="list">
-    <li class="list__item" v-for="note in notes" :key="note.id">
-      <button className="sticker__delete-button" @click="deleteNote">
+    <li class="list__item" 
+    v-for="note in notes"
+    :note="note" 
+    :key="note.id">
+      <button className="sticker__delete-button" 
+      @click="delete">
         x
       </button>
       <p class="sticker__text">
@@ -15,18 +19,15 @@
 
 export default {
   props: {
-    notes: {
+    notes: { 
       type: Array,
-      required: true
+      required: true,
     }
   },
   methods: {
     deleteNote() {
-      this.$emit('delete', this.note)
-      this.note = {
-        text: ""
+      this.$emit('delete', note)
       }
-    }
   }
 }
 </script>

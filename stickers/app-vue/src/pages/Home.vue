@@ -35,7 +35,7 @@ export default {
     },
 
     methods: {
-        createNote(text) {
+        createNote() {
             try {
                 createNote(sessionStorage.token, "")
                     .then(() => retrieveNotes(sessionStorage.token))
@@ -46,11 +46,11 @@ export default {
             }
         },
 
-        deleteNote(noteId) {
+        deleteNote(note) {
     try {
-      deleteNote(sessionStorage.token, noteId, note)
+      deleteNote(sessionStorage.token)
         .then(() => retrieveNotes(sessionStorage.token))
-        .then(note => this.note.splice(noteId))
+        .then(() => this.notes.filter(p => p.id !== note.id))
         .then(() => window.location.reload())
         .catch((error) => alert(error.message));
     } catch (error) {

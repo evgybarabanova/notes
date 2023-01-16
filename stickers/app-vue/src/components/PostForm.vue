@@ -17,16 +17,14 @@ export default {
     data() {
         return {
             note: {
-                   text: '',
+                type: Object,
+                required: true,
                }
         }
     },
     methods: {
-        updateNote(noteId, text) {
+        updateNote() {
             this.$emit('update', this.note)
-            this.note = {
-                text: ""
-            }
         }
     }
 }

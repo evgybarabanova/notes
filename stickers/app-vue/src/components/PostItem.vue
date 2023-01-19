@@ -1,19 +1,17 @@
 <template>  
-<div class="note">
   <div>
       <p class="sticker__text">{{ note.text }}</p>
-      <button className="sticker__delete-button"
+      <button class="sticker__delete-button"
        @click="$emit('delete', note)">
           x
       </button>
   </div>
-</div>
 </template>
 
 <script>
 export default {
     props: {
-    post: {
+    note: {
       type: Object,
       required: true,
     }
@@ -22,14 +20,14 @@ export default {
 </script>
 
 <style scoped>
-p {
+.sticker__text {
   background-color: yellow;
   border: none;
   outline: none;
   margin: 0;
-}
+} 
 
-button {
+.sticker__delete-button {
   border: none;
   display: flex;
   align-self: flex-end;

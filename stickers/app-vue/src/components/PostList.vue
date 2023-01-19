@@ -1,28 +1,19 @@
 <template>
-  <ul className="list">
-    <li class="list__item" 
-    v-for="note in notes"
-    :note="note" 
-    :key="note.id"
-    @delete="$emit('delete', note)">
-      <!-- <button className="sticker__delete-button" 
-      @click="delete">
-        x
-      </button> -->
-      
-      <!-- <p class="sticker__text">
-        {{ note.text }}
-      </p> -->
-    </li>
-  </ul>
+  <div>
+    <TransitionGroup name="list">
+      <PostItemVue class="list__item" v-for="note in notes" :note="note" :key="note.id"
+        @delete="$emit('delete', note)" />
+    </TransitionGroup>
+  </div>
 </template>
 
 <script>
-import PostItem from './PostItem.vue';
+import PostItemVue from '@/components/PostItem.vue';
+
 export default {
-  components: {PostItem},
+  components: { PostItemVue },
   props: {
-    notes: { 
+    notes: {
       type: Array,
       required: true,
     }
@@ -36,7 +27,7 @@ export default {
 </script>
 
 <style scoped>
-ul {
+.list {
   list-style: none;
   padding: 0%;
   display: flex;
@@ -44,7 +35,7 @@ ul {
   align-items: center;
 }
 
-li {
+.list__item {
   background-color: yellow;
   display: flex;
   flex-direction: column;

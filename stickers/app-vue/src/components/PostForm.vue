@@ -1,11 +1,12 @@
 <template>
     <form @submit.prevent>
         <div class="sticker">
-            <p type="text" 
-            contenteditable="true" 
-            v-on:keyup.up="updateNote"
+            <p 
+            ref="text" 
+            :contenteditable="true" 
+            @keyup.up="updateNote"  
             class="sticker__text">
-            {{ note.text }}
+                {{ note.text }}
             </p>
         </div>
     </form>
@@ -13,6 +14,7 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 
 export default {
     data() {
